@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamize - منصة البيع بالجملة الذكية (B2B)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5aa0;
+            --secondary: #ff7e30;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+            --whatsapp: #25D366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to left, var(--primary), #1a4074);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            background-color: var(--secondary);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: -5px;
+            right: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            background-color: white;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .hero-text h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        /* Contact Banner */
+        .contact-banner {
+            background: linear-gradient(to right, var(--primary), #3a6bc5);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-banner h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .contact-item.whatsapp {
+            background-color: rgba(37, 211, 102, 0.2);
+        }
+        
+        .contact-item.whatsapp:hover {
+            background-color: rgba(37, 211, 102, 0.3);
+        }
+        
+        .contact-item i {
+            font-size: 20px;
+        }
+        
+        .contact-item.whatsapp i {
+            color: var(--whatsapp);
+        }
+        
+        /* Features Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background-color: rgba(44, 90, 160, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Target Audience Section */
+        .audience-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .audience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .audience-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .audience-card {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            border-right: 5px solid var(--secondary);
+        }
+        
+        .audience-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .audience-card h3 i {
+            color: var(--secondary);
+        }
+        
+        .audience-card ul {
+            list-style-position: inside;
+            margin-right: 15px;
+        }
+        
+        .audience-card li {
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        /* App Goals Section */
+        .goals-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .goals-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .goals-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .goal-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .goal-icon {
+            color: var(--success);
+            font-size: 22px;
+            margin-top: 5px;
+        }
+        
+        /* App Availability Section */
+        .availability-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .availability-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stores {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .store-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f8f9fa;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            width: 280px;
+        }
+        
+        .store-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .store-icon {
+            font-size: 40px;
+        }
+        
+        .apple-icon {
+            color: #000;
+        }
+        
+        .android-icon {
+            color: #3ddc84;
+        }
+        
+        .store-text h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            right: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-right: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-text h2 {
+                font-size: 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 50px 0 40px;
+            }
+            
+            .hero-text h2 {
+                font-size: 26px;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .stores {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .store-link {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .audience-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-banner h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">H</div>
+                    <div class="logo-text">
+                        <h1>Hamize</h1>
+                        <p>منصة البيع بالجملة الذكية (B2B)</p>
+                    </div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#about">عن المنصة</a>
+                    <a href="#features">المميزات</a>
+                    <a href="#audience">الفئات المستهدفة</a>
+                    <a href="#contact">اتصل بنا</a>
+                    <a href="#availability">تحميل التطبيق</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Hamize - <span class="highlight">منصة البيع بالجملة الذكية</span> الأولى في الجزائر</h2>
+                    <p>منصة إلكترونية متخصصة في البيع والشراء بالجملة (B2B)، صُمّمت خصيصًا لربط المصنّعين، الموردين، المستوردين، المصدّرين، ومقدّمي الخدمات مع تجار الجملة، تجار التجزئة، الحرفيين وأصحاب المحلات في بيئة رقمية موثوقة وسهلة الاستخدام.</p>
+                    <p>يهدف Hamize إلى رقمنة التجارة بالجملة في الجزائر وتبسيط عمليات البيع والشراء التقليدية، من خلال توفير سوق إلكترونية منظمة تقلل من الوسطاء، وتزيد من الشفافية، وتساعد جميع الأطراف على توسيع أعمالهم والوصول إلى شركاء جدد.</p>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="منصة Hamize للبيع بالجملة">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Banner -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-banner">
+                <h3>تواصل معنا على مدار الساعة</h3>
+                <p>نحن هنا للإجابة على استفساراتك وتقديم الدعم الفني</p>
+                
+                <div class="contact-info">
+                    <a href="https://wa.me/213557048595" target="_blank" class="contact-item whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>واتساب</strong>
+                            <p>0557 04 85 95</p>
+                        </div>
+                    </a>
+                    
+                    <a href="tel:0555797789" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>الهاتف</strong>
+                            <p>0555 79 77 89</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>أهم خصائص Hamize</h2>
+                <p>منصة متكاملة توفر جميع الأدوات اللازمة لإدارة عمليات البيع والشراء بالجملة بشكل سلس وفعّال</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>البحث الذكي عن المنتجات</h3>
+                    <p>البحث باستخدام اسم المنتج، عبر التصنيفات، أو بواسطة الباركود (Code-barre) للوصول السريع للمنتجات المطلوبة</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>صفحة المنتج التفصيلية</h3>
+                    <p>تتضمن جميع معلومات المنتج: الاسم، السعر، أقل كمية للطلب، صور المنتج، ومعلومات المورد</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>نظام طلبات متكامل</h3>
+                    <p>إرسال طلبات الشراء مباشرة عبر التطبيق مع إمكانية الموافقة أو التعديل من طرف المورد</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>تتبع الطلبيات</h3>
+                    <p>معرفة حالة الطلب (قيد المعالجة - مقبول - قيد الشحن - مكتمل) مع إشعارات فورية بتحديثات الطلب</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>ملفات تعريف احترافية</h3>
+                    <p>صفحة خاصة لكل مورد أو تاجر تحتوي على معلومات النشاط، المنتجات، ووسائل التواصل</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>بيئة آمنة وموثوقة</h3>
+                    <p>حسابات موثوقة لتقليل عمليات الاحتيال وتنظيم التواصل بين الطرفين في بيئة آمنة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="audience-section" id="audience">
+        <div class="container">
+            <div class="section-title">
+                <h2>الفئات المستهدفة</h2>
+                <p>صُمّم Hamize لخدمة جميع أطراف سوق الجملة في الجزائر</p>
+            </div>
+            
+            <div class="audience-cards">
+                <div class="audience-card">
+                    <h3><i class="fas fa-industry"></i> الموردون والمصنّعون</h3>
+                    <ul>
+                        <li>عرض منتجاتهم بالجملة على نطاق واسع</li>
+                        <li>تحديد أقل كمية للطلب (MOQ) لكل منتج</li>
+                        <li>استقبال طلبات الشراء والموافقة عليها بسهولة</li>
+                        <li>توسيع شبكة الزبائن داخل وخارج الولاية</li>
+                        <li>إدارة المخزون والمبيعات من خلال لوحة تحكم متكاملة</li>
+                    </ul>
+                </div>
+                
+                <div class="audience-card">
+                    <h3><i class="fas fa-store-alt"></i> تجار الجملة والتجزئة والحرفيون</h3>
+                    <ul>
+                        <li>البحث عن منتجات متعددة من موردين مختلفين في مكان واحد</li>
+                        <li>مقارنة العروض والأسعار بسهولة وشفافية</li>
+                        <li>طلب المنتجات بكل سهولة من خلال واجهة بسيطة</li>
+                        <li>تتبع الطلبية حتى الاستلام مع تحديثات مستمرة</li>
+                        <li>اكتشاف موردين جدد ومنتجات متنوعة لتنمية الأعمال</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Goals Section -->
+    <section class="goals-section" id="goals">
+        <div class="container">
+            <div class="section-title">
+                <h2>أهداف Hamize</h2>
+                <p>نسعى لتحقيق نقلة نوعية في تجارة الجملة بالجزائر من خلال الحلول الرقمية المتطورة</p>
+            </div>
+            
+            <div class="goals-list">
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <h3>رقمنة سوق الجملة في الجزائر</h3>
+                        <p>تحويل التجارة التقليدية إلى نظام رقمي منظم وفعّال</p>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <h3>تسهيل التبادل التجاري بين الشركات</h3>
+                        <p>توفير قنوات اتصال مباشرة وآمنة بين الموردين والتجار</p>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <h3>تقليل التكاليف التشغيلية</h3>
+                        <p>خفض تكاليف التسويق والبحث عن الشركاء التجاريين</p>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <h3>دعم المصنّعين المحليين</h3>
+                        <p>تمكين المصنعين الجزائريين من الوصول إلى أسواق أوسع</p>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <h3>تمكين التجار من الوصول السريع للموردين</h3>
+                        <p>إزالة العوائق الجغرافية والتنظيمية في الوصول للموردين</p>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <h3>خلق منظومة B2B حديثة ومستدامة</h3>
+                        <p>بناء نظام متكامل يسهم في نمو الاقتصاد الوطني</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Availability Section -->
+    <section class="availability-section" id="availability">
+        <div class="container">
+            <div class="section-title">
+                <h2>توفر التطبيق</h2>
+                <p>حمّل تطبيق Hamize الآن وابدأ رحلة تجارة الجملة الذكية</p>
+            </div>
+            
+            <div class="availability-content">
+                <p>Hamize متوفر الآن على منصتي الهواتف الذكية الرئيسية، يمكنك تحميله مجاناً والبدء في استخدامه فوراً للاستفادة من جميع المزايا التي تقدمها المنصة.</p>
+                
+                <div class="stores">
+                    <a href="https://play.google.com/store/apps/details?id=com.hamize.app" target="_blank" class="store-link">
+                        <div class="store-icon android-icon">
+                            <i class="fab fa-google-play"></i>
+                        </div>
+                        <div class="store-text">
+                            <h4>حمّله من Google Play</h4>
+                            <p>متوفر لأجهزة Android</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://apps.apple.com/dz/app/hamize/id6746096796?l=ar" target="_blank" class="store-link">
+                        <div class="store-icon apple-icon">
+                            <i class="fab fa-app-store-ios"></i>
+                        </div>
+                        <div class="store-text">
+                            <h4>حمّله من App Store</h4>
+                            <p>متوفر لأجهزة iPhone و iPad</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن Hamize</h3>
+                    <p>منصة إلكترونية متخصصة في البيع والشراء بالجملة (B2B)، تهدف إلى رقمنة التجارة بالجملة في الجزائر وتبسيط عمليات البيع والشراء التقليدية.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-chevron-left"></i> عن المنصة</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-left"></i> المميزات</a></li>
+                        <li><a href="#audience"><i class="fas fa-chevron-left"></i> الفئات المستهدفة</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                        <li><a href="#availability"><i class="fas fa-chevron-left"></i> تحميل التطبيق</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/213557048595" target="_blank"><i class="fab fa-whatsapp"></i> واتساب: 0557 04 85 95</a></li>
+                        <li><a href="tel:0555797789"><i class="fas fa-phone"></i> هاتف: 0555 79 77 89</a></li>
+                        <li><a href="mailto:info@hamize.dz"><i class="fas fa-envelope"></i> info@hamize.dz</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> الجزائر العاصمة، الجزائر</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تابعنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 Hamize. جميع الحقوق محفوظة. منصة البيع بالجملة الذكية (B2B)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation to feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Observe audience cards
+        document.querySelectorAll('.audience-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateX(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Observe goal items
+        document.querySelectorAll('.goal-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(item);
+        });
+        
+        // Initialize all elements as visible after a short delay
+        setTimeout(() => {
+            document.querySelectorAll('.feature-card, .audience-card, .goal-item').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translate(0)';
+                }
+            });
+        }, 300);
+        
+        // Add click-to-copy functionality for phone numbers
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (!this.href) {
+                    const phoneNumber = this.querySelector('p').textContent.trim();
+                    navigator.clipboard.writeText(phoneNumber).then(() => {
+                        const originalText = this.querySelector('p').textContent;
+                        this.querySelector('p').textContent = 'تم النسخ!';
+                        
+                        setTimeout(() => {
+                            this.querySelector('p').textContent = originalText;
+                        }, 2000);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
