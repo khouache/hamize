@@ -69,13 +69,14 @@
         }
         
         .brand-logo {
-            height: 90px; /* تخصيص حجم الشعار */
+            height: 80px; /* تم تكبير حجم الشعار هنا */
             object-fit: contain;
         }
         
         .nav-links {
             display: flex;
             gap: 30px;
+            align-items: center;
         }
         
         .nav-links a {
@@ -254,6 +255,7 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.1);
             transition: var(--transition);
+            direction: ltr; /* لضمان ظهور الرقم بشكل صحيح من اليسار لليمين */
         }
         
         .contact-item:hover {
@@ -413,7 +415,11 @@
             margin-bottom: 60px;
         }
 
-        .footer-brand img { height: 90px; margin-bottom: 20px; filter: brightness(0) invert(1); }
+        .footer-brand img { 
+            height: 80px; /* تم تكبير الشعار في الفوتر أيضاً */
+            margin-bottom: 20px; 
+            filter: brightness(0) invert(1); 
+        }
         
         .footer-title {
             color: var(--white);
@@ -442,7 +448,20 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            direction: ltr; /* لتنسيق الأرقام بشكل صحيح */
+            justify-content: flex-end; /* لضبط المحاذاة مع اتجاه اليمين لليسار */
+            width: 100%;
         }
+        /* تعديل خاص لروابط الفوتر لتبقى الأيقونة على اليمين والنص بعدها */
+        .footer-links.contact-list a {
+            direction: rtl;
+            justify-content: flex-start;
+        }
+        .footer-links.contact-list span {
+            direction: ltr;
+            display: inline-block;
+        }
+        
         .footer-links a:hover { color: var(--secondary); transform: translateX(-5px); }
 
         .footer-bottom {
@@ -469,6 +488,7 @@
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .footer-title::after { right: 50%; transform: translateX(50%); }
             .footer-links a:hover { transform: translateY(-3px); }
+            .footer-links.contact-list a { justify-content: center; }
         }
     </style>
 </head>
@@ -522,11 +542,11 @@
             <div class="contact-links">
                 <a href="https://wa.me/213557048595" target="_blank" class="contact-item whatsapp">
                     <i class="fab fa-whatsapp"></i>
-                    <span>0557 04 85 95</span>
+                    <span>0557048595</span>
                 </a>
                 <a href="tel:0555797789" class="contact-item phone-copy">
                     <i class="fas fa-phone-alt"></i>
-                    <span>0555 79 77 89</span>
+                    <span>0555797789</span>
                 </a>
             </div>
         </div>
@@ -615,16 +635,16 @@
                 
                 <div class="footer-col fade-up" style="transition-delay: 0.2s;">
                     <h4 class="footer-title">تواصل معنا</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://wa.me/213557048595"><i class="fab fa-whatsapp"></i> 0557 04 85 95</a></li>
-                        <li><a href="tel:0555797789"><i class="fas fa-phone"></i> 0555 79 77 89</a></li>
-                        <li><a href="mailto:info@hamize.dz"><i class="fas fa-envelope"></i> info@hamize.dz</a></li>
+                    <ul class="footer-links contact-list">
+                        <li><a href="https://wa.me/213557048595"><i class="fab fa-whatsapp"></i> <span>0557048595</span></a></li>
+                        <li><a href="tel:0555797789"><i class="fas fa-phone"></i> <span>0555797789</span></a></li>
+                        <li><a href="mailto:info@hamize.dz"><i class="fas fa-envelope"></i> <span>info@hamize.dz</span></a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col fade-up" style="transition-delay: 0.3s;">
                     <h4 class="footer-title">تابعنا</h4>
-                    <ul class="footer-links" style="display: flex; gap: 15px;">
+                    <ul class="footer-links" style="display: flex; gap: 15px; direction: rtl; justify-content: flex-start;">
                         <li><a href="#" style="font-size: 1.5rem;"><i class="fab fa-facebook"></i></a></li>
                         <li><a href="#" style="font-size: 1.5rem;"><i class="fab fa-instagram"></i></a></li>
                         <li><a href="#" style="font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a></li>
