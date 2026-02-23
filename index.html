@@ -3,726 +3,553 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamize | منصة البيع بالجملة الذكية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- تحسين SEO -->
+    <meta name="description" content="منصة Hamize الجزائرية الأولى لتجار التجزئة والحرفيين: اشترِ بالجملة بأسعار سرية، تواصل مع موردين موثوقين، وطور تجارتك.">
+    <meta name="keywords" content="جملة, تموين, بيع بالجملة, تطبيق تجار, سوق B2B, الجزائر, موردين, مصنعين">
+    <title>Hamize | دليلك الذكي للتسوق بالجملة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* المتغيرات الأساسية (نفس السابق مع إضافة ألوان جديدة) */
         :root {
-            /* الألوان المستوحاة من شعار Hamize */
-            --primary: #121c3b; /* الكحلي العميق */
-            --secondary: #ff7300; /* البرتقالي الحيوي */
+            --primary: #121c3b; 
+            --secondary: #ff7300; 
             --secondary-hover: #e66600;
-            --light-bg: #f4f7f9;
+            --light-bg: #f8fafc;
             --white: #ffffff;
             --dark: #0f172a;
             --gray: #64748b;
-            --gray-light: #e2e8f0;
-            --whatsapp: #25D366;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --danger: #ef4444;
+            --success: #10b981;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s ease;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--light-bg); color: var(--dark); line-height: 1.7; overflow-x: hidden; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        body {
-            background-color: var(--light-bg);
-            color: var(--dark);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        
-        /* تأثيرات الظهور عند التمرير */
+        /* Animations */
         .fade-up { opacity: 0; transform: translateY(30px); transition: var(--transition); }
         .fade-in { opacity: 1; transform: translateY(0); }
 
-        /* Header - Glassmorphism */
+        /* Header (مطابق مع تحسين الظل) */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-            padding: 15px 0;
-            transition: var(--transition);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05); padding: 15px 0; transition: var(--transition);
         }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .brand-logo { height: 60px; object-fit: contain; }
+        .btn-nav {
+            background: var(--secondary); color: var(--white); padding: 10px 28px;
+            border-radius: 50px; text-decoration: none; font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 115, 0, 0.3); transition: var(--transition);
         }
-        
-        .brand-logo {
-            height: 80px; /* تم تكبير حجم الشعار هنا */
-            object-fit: contain;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.05rem;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .nav-links a:hover { color: var(--secondary); }
-        
-        .nav-cta {
-            background: var(--secondary);
-            color: var(--white) !important;
-            padding: 8px 24px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(255, 115, 0, 0.3);
-        }
-        .nav-cta:hover {
-            background: var(--secondary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 115, 0, 0.4);
-        }
+        .btn-nav:hover { background: var(--secondary-hover); transform: translateY(-2px); }
 
-        /* Hero Section */
+        /* Hero Section (نفس السابق) */
         .hero {
-            padding: 160px 0 100px;
-            background: linear-gradient(135deg, var(--white) 0%, #edf2f7 100%);
-            position: relative;
-            overflow: hidden;
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            text-align: center; position: relative;
         }
+        .hero-badge {
+            display: inline-block; background: rgba(255, 115, 0, 0.1); color: var(--secondary);
+            padding: 8px 20px; border-radius: 50px; font-weight: 800; font-size: 1rem; margin-bottom: 25px;
+        }
+        .hero h1 { font-size: 3.5rem; color: var(--primary); font-weight: 900; line-height: 1.3; margin-bottom: 20px; }
+        .hero h1 span { color: var(--secondary); }
+        .hero p { font-size: 1.25rem; color: var(--gray); max-width: 800px; margin: 0 auto 40px; }
         
-        /* أشكال هندسية في الخلفية */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255,115,0,0.08) 0%, rgba(255,115,0,0) 70%);
-            border-radius: 50%;
-            z-index: 0;
+        .cta-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn-main {
+            padding: 16px 40px; border-radius: 50px; font-size: 1.2rem; font-weight: 800;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 12px; transition: var(--transition);
+        }
+        .btn-primary { background: var(--secondary); color: var(--white); box-shadow: 0 10px 25px rgba(255, 115, 0, 0.3); }
+        .btn-primary:hover { background: var(--secondary-hover); transform: translateY(-3px); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+        .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+        /* Pain Points (Agitation) - نفس السابق */
+        .pain-points { padding: 80px 0; background: var(--white); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); font-weight: 800; }
+        .section-title p { font-size: 1.1rem; color: var(--gray); margin-top: 10px; }
+        
+        .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .pain-card {
+            background: var(--light-bg); padding: 30px; border-radius: 16px; text-align: center;
+            border-top: 4px solid var(--danger); transition: var(--transition);
+        }
+        .pain-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .pain-icon { font-size: 2.5rem; color: var(--danger); margin-bottom: 20px; }
+        .pain-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary); }
+        .pain-card p { color: var(--gray); font-size: 0.95rem; }
+
+        /* Mechanism (How it Works) - نفس السابق */
+        .mechanism { padding: 100px 0; background: var(--primary); color: var(--white); }
+        .mechanism .section-title h2, .mechanism .section-title p { color: var(--white); }
+        .steps-container { display: flex; flex-direction: column; gap: 40px; max-width: 900px; margin: 0 auto; }
+        .step {
+            display: flex; align-items: center; gap: 30px; background: rgba(255,255,255,0.05);
+            padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .step-number {
+            min-width: 80px; height: 80px; background: var(--secondary); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: 900;
+        }
+        .step-content h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--secondary); }
+        .step-content p { font-size: 1.1rem; color: #cbd5e1; }
+        .secret-price-box {
+            background: rgba(255, 115, 0, 0.15); border-right: 4px solid var(--secondary);
+            padding: 15px 20px; margin-top: 15px; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
         }
 
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            position: relative;
-            z-index: 1;
+        /* Features - نفس السابق */
+        .features { padding: 100px 0; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feat-card {
+            background: var(--white); padding: 40px 30px; border-radius: 20px; box-shadow: var(--shadow-md);
+            position: relative; overflow: hidden; border: 1px solid var(--light-bg); transition: var(--transition);
         }
-        
-        .hero-text { flex: 1.2; }
-        
-        .hero-tag {
-            display: inline-block;
-            background: rgba(255, 115, 0, 0.1);
-            color: var(--secondary);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+        .feat-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-xl); border-color: var(--secondary); }
+        .feat-icon {
+            width: 70px; height: 70px; background: rgba(18, 28, 59, 0.05); color: var(--primary);
+            border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px;
         }
+        .feat-card:hover .feat-icon { background: var(--primary); color: var(--white); }
+        .feat-card h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 15px; font-weight: 800; }
+        .feat-card p { color: var(--gray); }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            color: var(--primary);
-            line-height: 1.2;
-            margin-bottom: 24px;
-            font-weight: 800;
-        }
-        
-        .hero-text h1 span { color: var(--secondary); }
-        
-        .hero-text p {
-            font-size: 1.15rem;
-            color: var(--gray);
-            margin-bottom: 35px;
-            max-width: 90%;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .btn {
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: var(--white);
-            box-shadow: 0 10px 20px rgba(18, 28, 59, 0.2);
-        }
-        
-        .btn-primary:hover {
-            background: #0b1125;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(18, 28, 59, 0.3);
-        }
-        
-        .btn-outline {
-            border: 2px solid var(--gray-light);
-            color: var(--primary);
-            background: var(--white);
-        }
-        
-        .btn-outline:hover {
-            border-color: var(--primary);
+        /* ========== الأقسام المتبقية ========== */
+
+        /* FAQ (الأسئلة الشائعة) - محدثة بالأسئلة الجديدة */
+        .faq {
+            padding: 80px 0;
             background: var(--light-bg);
         }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .hero-image img {
-            width: 100%;
-            border-radius: 24px;
-            box-shadow: var(--shadow-lg);
-            transform: perspective(1000px) rotateY(-5deg) translateY(-10px);
-            transition: var(--transition);
+        .faq-item {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
         }
-        
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateY(0deg) translateY(0);
-        }
-
-        /* Contact Banner */
-        .contact-banner {
-            background: var(--primary);
-            margin-top: -40px;
-            position: relative;
-            z-index: 10;
-            border-radius: 20px;
-            padding: 30px 40px;
+        .faq-question {
+            padding: 20px 25px;
+            background: var(--white);
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: var(--shadow-lg);
-            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-        }
-
-        .contact-text h3 { color: var(--white); font-size: 1.5rem; }
-        .contact-text p { color: #cbd5e1; }
-        
-        .contact-links {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255,255,255,0.1);
-            padding: 12px 24px;
-            border-radius: 50px;
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: var(--transition);
-            direction: ltr; /* لضمان ظهور الرقم بشكل صحيح من اليسار لليمين */
-        }
-        
-        .contact-item:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .contact-item.whatsapp:hover { color: var(--whatsapp); }
-        .contact-item i { font-size: 1.4rem; }
-        .contact-item.whatsapp i { color: var(--whatsapp); }
-
-        /* Section Titles */
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-header span {
-            color: var(--secondary);
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-top: 10px;
-            font-weight: 800;
-        }
-
-        /* Features Section */
-        .features { padding: 100px 0; }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid var(--gray-light);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--secondary);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-            border-color: transparent;
-        }
-        .feature-card:hover::after { transform: scaleX(1); }
-        
-        .icon-wrapper {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 115, 0, 0.1);
-            color: var(--secondary);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover .icon-wrapper {
-            background: var(--secondary);
-            color: var(--white);
-            border-radius: 50%;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-        
-        .feature-card p { color: var(--gray); font-size: 1.05rem; }
-
-        /* App Download Section */
-        .download-section {
-            padding: 100px 0;
-            background: var(--primary);
-            color: var(--white);
-            text-align: center;
-            position: relative;
-        }
-
-        .stores-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .store-btn {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: rgba(255,255,255,0.1);
-            padding: 15px 35px;
-            border-radius: 16px;
-            text-decoration: none;
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: var(--transition);
-            min-width: 280px;
-            text-align: right;
-        }
-
-        .store-btn:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .store-btn i { font-size: 2.5rem; }
-        .store-btn.android:hover i { color: #3ddc84; }
-        .store-btn.apple:hover i { color: #000; }
-
-        .store-text span { display: block; font-size: 0.9rem; opacity: 0.8; }
-        .store-text strong { display: block; font-size: 1.3rem; font-weight: 800; }
-
-        /* Footer */
-        footer {
-            background: #0b1125;
-            color: #94a3b8;
-            padding: 80px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .footer-brand img { 
-            height: 80px; /* تم تكبير الشعار في الفوتر أيضاً */
-            margin-bottom: 20px; 
-            filter: brightness(0) invert(1); 
-        }
-        
-        .footer-title {
-            color: var(--white);
-            font-size: 1.2rem;
-            margin-bottom: 25px;
             font-weight: 700;
-            position: relative;
-        }
-        .footer-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 15px; }
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
+            font-size: 1.2rem;
+            color: var(--primary);
             transition: var(--transition);
-            display: inline-flex;
+        }
+        .faq-question:hover {
+            background: #f1f5f9;
+        }
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        .faq-answer {
+            max-height: 0;
+            padding: 0 25px;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+            background: #fafafa;
+            border-top: 1px solid #e2e8f0;
+        }
+        .faq-answer p {
+            padding: 20px 0;
+            color: var(--gray);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* يزيد حسب المحتوى */
+            padding: 0 25px;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background: var(--secondary);
+            color: var(--white);
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            direction: ltr; /* لتنسيق الأرقام بشكل صحيح */
-            justify-content: flex-end; /* لضبط المحاذاة مع اتجاه اليمين لليسار */
-            width: 100%;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            border: none;
         }
-        /* تعديل خاص لروابط الفوتر لتبقى الأيقونة على اليمين والنص بعدها */
-        .footer-links.contact-list a {
-            direction: rtl;
-            justify-content: flex-start;
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
         }
-        .footer-links.contact-list span {
-            direction: ltr;
-            display: inline-block;
+        .back-to-top:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
         }
+
+        /* Trust CTA (نفس السابق مع تحسين طفيف) */
+        .trust-cta {
+            padding: 80px 0; background: linear-gradient(to right, var(--primary), #1a2956);
+            text-align: center; color: var(--white); margin: 60px 24px; border-radius: 30px;
+            box-shadow: var(--shadow-xl); position: relative; overflow: hidden;
+        }
+        .trust-cta h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; }
+        .trust-cta p { font-size: 1.2rem; color: #cbd5e1; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
         
-        .footer-links a:hover { color: var(--secondary); transform: translateX(-5px); }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content { flex-direction: column; text-align: center; }
-            .hero-text h1 { font-size: 2.8rem; }
-            .hero-text p { max-width: 100%; }
-            .hero-buttons { justify-content: center; }
-            .contact-banner { flex-direction: column; gap: 20px; text-align: center; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-
+        /* Footer (نفس السابق) */
+        footer { background: #0b1125; color: #94a3b8; padding: 60px 0 20px; text-align: center; }
+        .footer-logo { height: 70px; filter: brightness(0) invert(1); margin-bottom: 20px; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin: 30px 0; list-style: none; direction: ltr;}
+        .footer-links a { color: var(--white); text-decoration: none; font-size: 1.1rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--secondary); }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* يمكن إضافة قائمة همبرغر لاحقاً */
-            .hero { padding: 120px 0 60px; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .contact-links { flex-direction: column; width: 100%; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-title::after { right: 50%; transform: translateX(50%); }
-            .footer-links a:hover { transform: translateY(-3px); }
-            .footer-links.contact-list a { justify-content: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .step { flex-direction: column; text-align: center; }
+            .secret-price-box { border-right: none; border-top: 4px solid var(--secondary); }
+            .trust-cta { margin: 40px 15px; padding: 50px 20px; }
+            .cta-group { flex-direction: column; width: 100%; }
+            .btn-main { width: 100%; justify-content: center; }
+            .newsletter-form input, .newsletter-form button { width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#">
-                    <img src="1000167385.png" alt="Hamize Logo" class="brand-logo">
-                </a>
-                <nav class="nav-links">
-                    <a href="#about">الرئيسية</a>
-                    <a href="#features">المميزات</a>
-                    <a href="#audience">المستهدفون</a>
-                    <a href="#download" class="nav-cta">حمل التطبيق</a>
-                </nav>
-            </div>
+        <div class="container header-content">
+            <a href="#"><img src="1000167385.png" alt="Hamize Logo" class="brand-logo"></a>
+            <a href="#download" class="btn-nav">سجل متجرك مجاناً</a>
         </div>
     </header>
 
-    <section class="hero" id="about">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container fade-up">
+            <span class="hero-badge">مخصصة لتجار التجزئة والحرفيين 🏪</span>
+            <h1>توقف عن تضييع الوقت في البحث عن السلعة.<br>احصل على أفضل <span>عروض الجملة</span> وأنت في محلك!</h1>
+            <p>منصة Hamize تربطك مباشرة بأكبر الموردين والمصنعين في الجزائر. اطلب عروض الأسعار بسرية تامة، قارن، وأعد تموين متجرك بكل سهولة وبدون وسطاء.</p>
+            
+            <div class="cta-group">
+                <a href="#download" class="btn-main btn-primary">
+                    <i class="fas fa-user-plus"></i> أنشئ حسابك وابدأ بطلب الأسعار
+                </a>
+                <a href="#how-it-works" class="btn-main btn-outline">
+                    كيف تعمل المنصة؟
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="pain-points">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text fade-up">
-                    <span class="hero-tag">B2B المنصة الأولى في الجزائر</span>
-                    <h1>ارتقِ بتجارتك مع <span>Hamize</span></h1>
-                    <p>المنصة الذكية التي تربط المصنّعين والموردين بتجار الجملة والتجزئة في بيئة رقمية آمنة، سريعة، وموثوقة. وسّع شبكة أعمالك اليوم وضاعف مبيعاتك.</p>
-                    <div class="hero-buttons">
-                        <a href="#download" class="btn btn-primary">
-                            <i class="fab fa-google-play"></i> حمل التطبيق الآن
-                        </a>
-                        <a href="#features" class="btn btn-outline">
-                            اكتشف المميزات
-                        </a>
-                    </div>
+            <div class="section-title fade-up">
+                <h2>هل تعاني من هذه المشاكل يومياً؟</h2>
+                <p>ندرك تماماً التحديات التي تواجه التاجر الجزائري في إعادة التموين</p>
+            </div>
+            
+            <div class="pain-grid">
+                <div class="pain-card fade-up">
+                    <i class="fas fa-search-dollar pain-icon"></i>
+                    <h3>صعوبة إيجاد المورد المناسب</h3>
+                    <p>البحث العشوائي يستهلك جهدك ويجعلك تفوت أفضل المنتجات والأسعار في السوق.</p>
                 </div>
-                <div class="hero-image fade-up" style="transition-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="لوحة تحكم Hamize">
+                <div class="pain-card fade-up" style="transition-delay: 0.1s;">
+                    <i class="fas fa-phone-slash pain-icon"></i>
+                    <h3>تضييع الوقت في الاتصالات</h3>
+                    <p>قضاء ساعات في الاتصال بالموردين فقط لمعرفة هل السلعة متوفرة وما هو سعرها.</p>
+                </div>
+                <div class="pain-card fade-up" style="transition-delay: 0.2s;">
+                    <i class="fas fa-eye-slash pain-icon"></i>
+                    <h3>عدم وضوح أسعار الجملة</h3>
+                    <p>الأسعار تتغير باستمرار، والوسطاء يزيدون التكلفة عليك وتقلل من هامش ربحك.</p>
+                </div>
+                <div class="pain-card fade-up" style="transition-delay: 0.3s;">
+                    <i class="fas fa-box-open pain-icon"></i>
+                    <h3>نفاد المخزون المفاجئ</h3>
+                    <p>صعوبة إعادة تموين محلك بسرعة مما يؤدي إلى خسارة الزبائن لصالح المنافسين.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="container">
-        <div class="contact-banner fade-up">
-            <div class="contact-text">
-                <h3>هل تحتاج إلى مساعدة أو استفسار؟</h3>
-                <p>فريق الدعم الفني متواجد على مدار الساعة لخدمتك</p>
+    <!-- Mechanism (How it Works) -->
+    <section class="mechanism" id="how-it-works">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2>كيف يعمل تطبيق Hamize؟</h2>
+                <p>نظام احترافي (B2B) يحفظ خصوصية تجارتك ويضمن لك أفضل الأسعار</p>
             </div>
-            <div class="contact-links">
-                <a href="https://wa.me/213557048595" target="_blank" class="contact-item whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>0557048595</span>
-                </a>
-                <a href="tel:0555797789" class="contact-item phone-copy">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>0555797789</span>
-                </a>
+            
+            <div class="steps-container">
+                <div class="step fade-up">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>سجّل بيانات متجرك بدقة</h3>
+                        <p>قم بتحميل التطبيق وإنشاء حسابك. الأهم هو إدخال <strong>اسم نشاطك، رقم هاتفك، عنوانك التفصيلي، وتحديد موقع محلك عبر الـ GPS</strong>. هذه البيانات تبني الثقة مع المورد وتثبت أنك تاجر حقيقي.</p>
+                    </div>
+                </div>
+                
+                <div class="step fade-up">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>ابحث وأرسل طلب عرض سعر (RFQ)</h3>
+                        <p>الأسعار في Hamize ليست مكشوفة للعموم! تصفح المنتجات وأرسل طلب عرض سعر للمورد. المورد سيستلم طلبك مع بيانات متجرك وموقعك الجغرافي.</p>
+                        <div class="secret-price-box">
+                            <i class="fas fa-info-circle"></i> <strong>لماذا الأسعار مخفية؟</strong> لحماية سوق الجملة، المورد يعطيك السعر الخاص بك فقط بعد التأكد من هويتك كتاجر تجزئة أو حرفي.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step fade-up">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>استلم السعر، وافق، وتتبع طلبيتك</h3>
+                        <p>بمجرد موافقة المورد، سيظهر لك السعر التنافسي. يمكنك تأكيد الطلبية فوراً وتتبع حالتها (قيد المعالجة ➔ مشحونة ➔ مكتملة) حتى تصل إلى باب محلك.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <section class="features" id="features">
+    <!-- Features -->
+    <section class="features">
         <div class="container">
-            <div class="section-header fade-up">
-                <span>أدوات ذكية لتجارة أسهل</span>
-                <h2>لماذا تختار منصة Hamize؟</h2>
+            <div class="section-title fade-up">
+                <h2>كل ما تحتاجه لتنمية تجارتك في تطبيق واحد</h2>
             </div>
             
             <div class="features-grid">
-                <div class="feature-card fade-up">
-                    <div class="icon-wrapper"><i class="fas fa-search"></i></div>
-                    <h3>بحث ذكي ودقيق</h3>
-                    <p>ابحث عن المنتجات بالاسم، التصنيف، أو حتى من خلال مسح الباركود (Code-barre) للوصول الفوري.</p>
+                <div class="feat-card fade-up">
+                    <div class="feat-icon"><i class="fas fa-barcode"></i></div>
+                    <h3>بحث متقدم وسريع</h3>
+                    <p>ابحث عن أي سلعة بالاسم، أو تصفح الأقسام، أو استخدم كاميرا الهاتف لمسح <strong>الباركود (Code-barre)</strong> للمنتج وإيجاده فوراً.</p>
                 </div>
-                <div class="feature-card fade-up" style="transition-delay: 0.1s;">
-                    <div class="icon-wrapper"><i class="fas fa-boxes"></i></div>
-                    <h3>إدارة الطلبات بسهولة</h3>
-                    <p>أرسل طلبات الشراء وتابع حالتها خطوة بخطوة (قيد المعالجة، مشحونة، مكتملة) مع إشعارات لحظية.</p>
+                <div class="feat-card fade-up" style="transition-delay: 0.1s;">
+                    <div class="feat-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>معرفة أقل كمية للطلب (MOQ)</h3>
+                    <p>كل منتج يوضح لك الحد الأدنى للكمية التي يمكنك طلبها، لتتمكن من تخطيط ميزانية التموين الخاصة بك بدقة.</p>
                 </div>
-                <div class="feature-card fade-up" style="transition-delay: 0.2s;">
-                    <div class="icon-wrapper"><i class="fas fa-store-alt"></i></div>
-                    <h3>ملفات تعريف احترافية</h3>
-                    <p>واجهة خاصة لكل مورد لعرض منتجاته، الحد الأدنى للطلب (MOQ)، ومعلومات التواصل الخاصة به.</p>
+                <div class="feat-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="feat-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>موردون موثوقون ومعتمدون</h3>
+                    <p>نحن نضمن لك التعامل مع مصنعين ومستوردين وتجار جملة حقيقيين وموثوقين لتجنب أي عمليات احتيال.</p>
                 </div>
-                <div class="feature-card fade-up" style="transition-delay: 0.3s;">
-                    <div class="icon-wrapper"><i class="fas fa-shield-check"></i></div>
-                    <h3>بيئة آمنة وموثوقة</h3>
-                    <p>تواصل مع شركاء تجاريين موثوقين في بيئة تقلل من المخاطر وتضمن شفافية التعاملات التجارية.</p>
+                <div class="feat-card fade-up" style="transition-delay: 0.3s;">
+                    <div class="feat-icon"><i class="fas fa-truck-fast"></i></div>
+                    <h3>توفير الوقت والجهد والتكاليف</h3>
+                    <p>لا داعي لإغلاق محلك والسفر للبحث عن السلعة. قم بتموين متجرك من شاشة هاتفك في أي وقت ومن أي مكان.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="download-section" id="download">
+    <!-- ========== قسم FAQ محدث بالأسئلة الجديدة ========== -->
+    <section class="faq">
         <div class="container">
-            <div class="section-header fade-up">
-                <span style="color: white; opacity: 0.8;">توفر التطبيق</span>
-                <h2 style="color: white;">جاهز لنقل تجارتك للمستوى التالي؟</h2>
-                <p style="color: #cbd5e1; max-width: 600px; margin: 20px auto 0; font-size: 1.1rem;">
-                    حمل تطبيق Hamize الآن مجاناً وابدأ في استكشاف آلاف المنتجات والموردين من جميع أنحاء الجزائر في مكان واحد.
-                </p>
+            <div class="section-title fade-up">
+                <h2>الأسئلة الشائعة</h2>
+                <p>أجوبة سريعة لأهم الاستفسارات</p>
             </div>
-            
-            <div class="stores-container fade-up">
-                <a href="https://play.google.com/store/apps/details?id=com.hamize.app" target="_blank" class="store-btn android">
-                    <i class="fab fa-google-play"></i>
-                    <div class="store-text">
-                        <span>حمله الآن من</span>
-                        <strong>Google Play</strong>
+            <div class="faq-grid">
+                <!-- السؤال 1 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>1️⃣ هل تطبيق Hamize مجاني بالكامل؟</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
-                </a>
+                    <div class="faq-answer">
+                        <p>نعم، التسجيل وطلب عروض الأسعار مجاني 100% للتجار.</p>
+                    </div>
+                </div>
+                <!-- السؤال 2 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>2️⃣ هل أحتاج إلى سجل تجاري للتسجيل؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>ليس شرطاً عند التسجيل، لكن بعض الموردين قد يطلبون إثبات نشاط تجاري للمنتجات الحساسة.</p>
+                    </div>
+                </div>
+                <!-- السؤال 3 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>3️⃣ لماذا لا تظهر أسعار المنتجات مباشرة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لحماية سوق الجملة ومنع وصول الأسعار لغير التجار، يتم إرسال السعر بعد التأكد من هويتك كتاجر.</p>
+                    </div>
+                </div>
+                <!-- السؤال 5 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>5️⃣ هل يمكنني طلب كميات صغيرة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يعتمد ذلك على الحد الأدنى للطلب (MOQ) الذي يحدده كل مورد.</p>
+                    </div>
+                </div>
+                <!-- السؤال 13 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>13️⃣ ماذا أفعل إذا تأخر المورد؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يمكنك التواصل معه مباشرة عبر بيانات الاتصال داخل التطبيق.</p>
+                    </div>
+                </div>
+                <!-- السؤال 17 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>17️⃣ هل بيانات متجري آمنة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، بياناتك لا تُعرض للعامة وتُستخدم فقط عند إرسال طلب عرض سعر الى المورد.</p>
+                    </div>
+                </div>
+                <!-- السؤال 18 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>18️⃣ هل يمكن للحرفيين الاستفادة من المنصة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>بالتأكيد، المنصة مخصصة أيضاً للحرفيين الباحثين عن مواد أولية بالجملة.</p>
+                    </div>
+                </div>
+                <!-- السؤال 19 -->
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <span>19️⃣ هل يمكنني حفظ الموردين المفضلين؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكنك التعامل مع نفس المورد مستقبلاً بسهولة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="download">
+        <div class="container">
+            <div class="trust-cta fade-up">
+                <h2>هل أنت مستعد لتطوير تجارتك؟</h2>
+                <p>انضم الآن إلى المئات من تجار التجزئة والحرفيين الذين يثقون في منصة Hamize لإدارة تموين محلاتهم باحترافية وأمان وشفافية.</p>
                 
-                <a href="https://apps.apple.com/dz/app/hamize/id6746096796?l=ar" target="_blank" class="store-btn apple">
-                    <i class="fab fa-apple"></i>
-                    <div class="store-text">
-                        <span>حمله الآن من</span>
-                        <strong>App Store</strong>
-                    </div>
-                </a>
+                <div class="cta-group">
+                    <a href="https://play.google.com/store/apps/details?id=com.hamize.app" target="_blank" class="btn-main" style="background: var(--white); color: var(--primary);">
+                        <i class="fab fa-google-play"></i> تحميل للـ Android
+                    </a>
+                    <a href="https://apps.apple.com/dz/app/hamize/id6746096796?l=ar" target="_blank" class="btn-main" style="background: var(--dark); border: 1px solid rgba(255,255,255,0.2); color: var(--white);">
+                        <i class="fab fa-apple"></i> تحميل للـ iPhone
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about fade-up">
-                    <div class="footer-brand">
-                        <img src="1000167385.png" alt="Hamize Logo">
-                    </div>
-                    <p>المنصة الرائدة في الجزائر المتخصصة في التجارة الإلكترونية بين الشركات (B2B). نهدف إلى رقمنة سوق الجملة وتسهيل التبادل التجاري.</p>
-                </div>
-                
-                <div class="footer-col fade-up" style="transition-delay: 0.1s;">
-                    <h4 class="footer-title">روابط هامة</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about"><i class="fas fa-angle-left"></i> الرئيسية</a></li>
-                        <li><a href="#features"><i class="fas fa-angle-left"></i> المميزات</a></li>
-                        <li><a href="#download"><i class="fas fa-angle-left"></i> تحميل التطبيق</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col fade-up" style="transition-delay: 0.2s;">
-                    <h4 class="footer-title">تواصل معنا</h4>
-                    <ul class="footer-links contact-list">
-                        <li><a href="https://wa.me/213557048595"><i class="fab fa-whatsapp"></i> <span>0557048595</span></a></li>
-                        <li><a href="tel:0555797789"><i class="fas fa-phone"></i> <span>0555797789</span></a></li>
-                        <li><a href="mailto:info@hamize.dz"><i class="fas fa-envelope"></i> <span>info@hamize.dz</span></a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col fade-up" style="transition-delay: 0.3s;">
-                    <h4 class="footer-title">تابعنا</h4>
-                    <ul class="footer-links" style="display: flex; gap: 15px; direction: rtl; justify-content: flex-start;">
-                        <li><a href="#" style="font-size: 1.5rem;"><i class="fab fa-facebook"></i></a></li>
-                        <li><a href="#" style="font-size: 1.5rem;"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#" style="font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
+            <img src="1000167385.png" alt="Hamize Logo" class="footer-logo">
+            <p>منصة البيع بالجملة الذكية (B2B) الأولى في الجزائر</p>
             
-            <div class="footer-bottom">
-                <p>© 2024 Hamize. جميع الحقوق محفوظة.</p>
-            </div>
+            <ul class="footer-links">
+                <li><a href="https://wa.me/213557048595" target="_blank"><i class="fab fa-whatsapp"></i> 0557048595</a></li>
+                <li><a href="tel:0555797789"><i class="fas fa-phone"></i> 0555797789</a></li>
+            </ul>
+            
+            <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 20px;">© 2024 Hamize. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
     <script>
-        // تأثير الشفافية للقائمة العلوية عند التمرير
+        // Header shadow on scroll
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
-                header.style.padding = '10px 0';
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
             } else {
-                header.style.padding = '15px 0';
-                header.style.background = 'rgba(255, 255, 255, 0.85)';
+                header.style.boxShadow = 'none';
             }
         });
 
-        // Intersection Observer لتفعيل تأثيرات الظهور (Animations)
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Animations Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target); // تشغيل الحركة مرة واحدة فقط
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('.fade-up').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        // التمرير السلس (Smooth Scroll)
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
                 }
             });
         });
 
-        // ميزة النسخ عند النقر على رقم الهاتف
-        document.querySelectorAll('.phone-copy').forEach(item => {
-            item.addEventListener('click', function(e) {
-                if (!this.getAttribute('href').startsWith('http')) {
-                    e.preventDefault();
-                    const phoneNumber = this.querySelector('span').textContent.trim();
-                    navigator.clipboard.writeText(phoneNumber).then(() => {
-                        const span = this.querySelector('span');
-                        const originalText = span.textContent;
-                        span.textContent = 'تم النسخ بنجاح!';
-                        span.style.color = '#25D366';
-                        
-                        setTimeout(() => {
-                            span.textContent = originalText;
-                            span.style.color = '';
-                        }, 2000);
-                    });
-                }
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
             });
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
